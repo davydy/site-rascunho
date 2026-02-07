@@ -30,14 +30,17 @@
             scrollbar-width: none;
         }
 
-        /* TICKET OTIMIZADO (Menor e com furos delicados) */
+        /* TICKET OTIMIZADO (Baseado em 296x147px) */
         .coupon-ticket {
             background-color: #F8FEFF;
             position: relative;
-            border-radius: 4px; /* Borda um pouco mais sutil */
+            border-radius: 4px;
+            width: 100%;
+            /* ProporÃ§Ã£o exata 296/147 */
+            aspect-ratio: 296 / 147;
             
-            /* Tamanho do furo reduzido pela metade visualmente */
-            --hole-radius: 3.5px; 
+            /* Furo proporcional */
+            --hole-radius: 4%; 
             
             -webkit-mask-image: 
                 radial-gradient(circle at left center, transparent var(--hole-radius), black calc(var(--hole-radius) + 0.5px)),
@@ -50,16 +53,18 @@
             mask-composite: intersect;
             
             box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
-        /* Efeito de clique */
         .btn-press:active {
             transform: scale(0.96);
             opacity: 0.9;
             transition: transform 0.1s;
         }
 
-        /* Toast */
         #toast {
             visibility: hidden;
             min-width: 200px;
@@ -86,12 +91,13 @@
 </head>
 <body class="flex justify-center min-h-screen bg-gray-200">
 
-    <!-- Container Principal -->
+    <!-- Container Principal (Simulando mobile max-w-md, mas proporÃ§Ãµes internas sÃ£o relativas a 1080px) -->
     <div class="w-full max-w-md bg-[#f1f1f2] shadow-2xl relative min-h-screen flex flex-col">
         
         <!-- Header Fixo -->
         <div class="sticky top-0 z-50 bg-white pt-2 pb-2 border-b border-gray-100 shadow-sm">
-            <div class="flex items-center justify-between px-4 mb-2">
+            <!-- Margem Lateral: 23px / 1080px = 2.13% -->
+            <div class="flex items-center justify-between px-[2.13%] mb-2">
                 <div class="btn-press cursor-pointer p-1" onclick="showToast('Abrindo Live...')">
                     <i class="fas fa-tv text-lg text-[#161823]"></i>
                 </div>
@@ -103,7 +109,7 @@
             </div>
 
             <!-- Barra de Busca -->
-            <div class="px-4">
+            <div class="px-[2.13%]">
                 <div class="relative flex items-center group">
                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                         <i class="fas fa-search text-gray-400 text-lg group-focus-within:text-black"></i>
@@ -122,19 +128,18 @@
             </div>
         </div>
 
-        <!-- Conteúdo Scrollável -->
+        <!-- ConteÃºdo ScrollÃ¡vel -->
         <div class="overflow-y-auto flex-1 pb-8">
             
-            <!-- Banner 1: Super Brand Day -->
-            <div class="px-4 mt-3 mb-4">
-                <div class="w-full aspect-[1035/274] rounded-xl overflow-hidden shadow-sm relative bg-[#FFF8E1] cursor-pointer btn-press group" onclick="showToast('Redirecionando para Super Brand Day...')">
+            <!-- 2.1 Banner topo (Super Brand Day) -->
+            <!-- Margem 2.13%. Aspect Ratio 1034/274 -->
+            <div class="px-[2.13%] mt-3 mb-4">
+                <div class="w-full aspect-[1034/274] rounded-xl overflow-hidden shadow-sm relative bg-[#FFF8E1] cursor-pointer btn-press group" onclick="showToast('Redirecionando para Super Brand Day...')">
                     
-                    <!-- Imagem de Fundo -->
                     <img src="produtos/banner_top.jpg" 
                          class="absolute inset-0 w-full h-full object-cover z-0 transition-transform duration-500 group-hover:scale-105"
                          alt="Banner Promo&ccedil;&atilde;o">
                     
-                    <!-- Conteúdo de Texto -->
                     <div class="relative z-10 h-full flex flex-col justify-center px-5 w-2/3">
                         <span class="text-[10px] font-extrabold uppercase tracking-wide flex items-center gap-1 text-black mb-0.5">
                             <i class="fas fa-lock text-[9px]"></i> SUPER BRAND DAY
@@ -148,67 +153,67 @@
                 </div>
             </div>
 
-            <!-- Seção de Cupons -->
-            <div class="px-4 mb-6">
-                <!-- Container Fundo -->
-                <div class="relative w-full rounded-xl overflow-hidden p-3 shadow-sm flex flex-col bg-[#FF2B55]">
+            <!-- 2.2 SeÃ§Ã£o â€œCupons novos clientesâ€ -->
+            <!-- Margem 2.13%. Aspect Ratio 1034/290 -->
+            <div class="px-[2.13%] mb-6">
+                <!-- Padding interno sugerido 12-16px (~1.2% - 1.5%) -->
+                <div class="relative w-full aspect-[1034/290] rounded-xl overflow-hidden p-[1.5%] shadow-sm flex flex-col bg-[#FF2B55]">
                     
-                    <!-- Imagem de Fundo -->
                     <img src="produtos/banner_cupom.jpg" 
                          class="absolute inset-0 w-full h-full object-cover z-0"
                          onerror="this.style.display='none';"> 
                     
                     <!-- Header do Cupom -->
-                    <div class="relative z-10 flex justify-between items-center px-1 mb-3"> 
+                    <div class="relative z-10 flex justify-between items-center px-1 mb-auto mt-1"> 
                         <h3 class="font-bold text-[18px] text-white tracking-tight leading-none drop-shadow-md">Cupons novos clientes</h3>
                         <button onclick="showToast('Cupons aplicados!')" class="bg-transparent hover:bg-white/10 active:bg-white/20 text-white text-[12px] font-semibold px-5 py-1 rounded-full border border-white transition btn-press">
                             Usar
                         </button>
                     </div>
 
-                    <!-- Lista de Tickets -->
-                    <div class="relative z-10 flex gap-2 w-full justify-between items-end">
+                    <!-- 2.3 Tickets de cupom -->
+                    <!-- Gap visual curto: ~1.2% (aprox 12px) -->
+                    <div class="relative z-10 flex gap-[1.2%] w-full justify-between items-end pb-1">
                         
                         <!-- Cupom 1 -->
-                        <div class="coupon-ticket flex-1 flex flex-col justify-center items-center py-2 cursor-pointer btn-press px-1" onclick="coletarCupom(this)">
-                            <div class="text-center w-full">
-                                <p class="text-[#004D40] font-extrabold text-[11px] leading-tight">Frete gr&aacute;tis</p>
-                                <p class="text-[#00695C] text-[8px] font-bold whitespace-nowrap mt-0.5">Desconto de R$ 20,00</p>
-                            </div>
+                        <div class="coupon-ticket cursor-pointer btn-press" onclick="coletarCupom(this)">
+                            <p class="text-[#004D40] font-extrabold text-[11px] leading-tight">Frete gr&aacute;tis</p>
+                            <p class="text-[#00695C] text-[8px] font-bold whitespace-nowrap mt-0.5">Desconto de R$ 20,00</p>
                         </div>
                         
                         <!-- Cupom 2 -->
-                        <div class="coupon-ticket flex-1 flex flex-col justify-center items-center py-2 cursor-pointer btn-press px-1" onclick="coletarCupom(this)">
-                            <div class="text-center w-full">
-                                <p class="text-[#004D40] font-extrabold text-[11px] leading-tight">Frete gr&aacute;tis</p>
-                                <p class="text-[#00695C] text-[8px] font-bold whitespace-nowrap mt-0.5">Desconto de R$ 20,00</p>
-                            </div>
+                        <div class="coupon-ticket cursor-pointer btn-press" onclick="coletarCupom(this)">
+                            <p class="text-[#004D40] font-extrabold text-[11px] leading-tight">Frete gr&aacute;tis</p>
+                            <p class="text-[#00695C] text-[8px] font-bold whitespace-nowrap mt-0.5">Desconto de R$ 20,00</p>
                         </div>
                         
                         <!-- Cupom 3 -->
-                        <div class="coupon-ticket flex-1 flex flex-col justify-center items-center py-2 cursor-pointer btn-press px-1" onclick="coletarCupom(this)">
-                            <div class="text-center w-full">
-                                <p class="text-[#004D40] font-extrabold text-[11px] leading-tight">Frete gr&aacute;tis</p>
-                                <p class="text-[#00695C] text-[8px] font-bold whitespace-nowrap mt-0.5">Desconto de R$ 5,00</p>
-                            </div>
+                        <div class="coupon-ticket cursor-pointer btn-press" onclick="coletarCupom(this)">
+                            <p class="text-[#004D40] font-extrabold text-[11px] leading-tight">Frete gr&aacute;tis</p>
+                            <p class="text-[#00695C] text-[8px] font-bold whitespace-nowrap mt-0.5">Desconto de R$ 5,00</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Ofertas de Boas-vindas (COM ABA BRANCA DE FUNDO E PROPORÇÃO 1042x473) -->
-            <div class="mx-4 mb-6 bg-white rounded-xl p-3 shadow-sm relative aspect-[1042/473] flex flex-col justify-center">
-                <div class="flex justify-between items-center mb-2">
+            <!-- 2.4 â€œOfertas de boas-vindasâ€ -->
+            <!-- Margem 2.13% -->
+            <div class="mx-[2.13%] mb-6 bg-white rounded-xl p-3 shadow-sm relative flex flex-col justify-center">
+                <div class="flex justify-between items-center mb-3">
                     <h3 class="font-bold text-lg text-black tracking-tight">Ofertas de boas-vindas</h3>
                     <span class="bg-[#20D5EC] text-white text-[10px] px-1.5 py-0.5 rounded font-bold shadow-sm">Frete gr&aacute;tis</span>
                 </div>
                 
                 <div class="flex gap-3 overflow-x-auto no-scrollbar pb-1">
-                    <!-- Itens (Imagens 1:1) -->
-                    <div class="min-w-[110px] cursor-pointer group btn-press" onclick="abrirProduto('Monitor Gamer')">
+                    <!-- 2.4.1 Imagem do item (quadrada) -->
+                    <!-- 2.4.2 Card do item -->
+                    <!-- Largura Item: 230px / 1034px = 22.24% da largura Ãºtil -->
+                    
+                    <!-- Item 1 -->
+                    <div class="min-w-[22.24%] w-[22.24%] cursor-pointer group btn-press" onclick="abrirProduto('Monitor Gamer')">
                         <div class="bg-white rounded-lg overflow-hidden relative border border-gray-100 shadow-sm">
-                            <img src="produtos/monitor_gamer.jpg" class="w-full aspect-square object-cover" onerror="this.src='https://placehold.co/150x150/eee/999?text=Monitor'">
-                            <span class="absolute bottom-0 left-0 bg-[#FE2C55] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-tr-lg">? 56%</span>
+                            <img src="produtos/monitor_gamer.jpg" class="w-full aspect-square object-cover" onerror="this.src='https://placehold.co/230x230/eee/999?text=Monitor'">
+                            <span class="absolute bottom-0 left-0 bg-[#FE2C55] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-tr-lg">â†“ 56%</span>
                         </div>
                         <div class="mt-1.5 px-0.5">
                             <p class="font-bold text-sm text-[#161823]">R$ 229,96</p>
@@ -216,10 +221,11 @@
                         </div>
                     </div>
 
-                    <div class="min-w-[110px] cursor-pointer group btn-press" onclick="abrirProduto('Câmera Digital')">
+                    <!-- Item 2 -->
+                    <div class="min-w-[22.24%] w-[22.24%] cursor-pointer group btn-press" onclick="abrirProduto('CÃ¢mera Digital')">
                         <div class="bg-white rounded-lg overflow-hidden relative border border-gray-100 shadow-sm">
-                            <img src="produtos/camera_branca.jpg" class="w-full aspect-square object-cover" onerror="this.src='https://placehold.co/150x150/eee/999?text=Camera'">
-                            <span class="absolute bottom-0 left-0 bg-[#FE2C55] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-tr-lg">? 66%</span>
+                            <img src="produtos/camera_branca.jpg" class="w-full aspect-square object-cover" onerror="this.src='https://placehold.co/230x230/eee/999?text=Camera'">
+                            <span class="absolute bottom-0 left-0 bg-[#FE2C55] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-tr-lg">â†“ 66%</span>
                         </div>
                         <div class="mt-1.5 px-0.5">
                             <p class="font-bold text-sm text-[#161823]">R$ 224,19</p>
@@ -227,10 +233,11 @@
                         </div>
                     </div>
 
-                     <div class="min-w-[110px] cursor-pointer group btn-press" onclick="abrirProduto('Mousepad')">
+                    <!-- Item 3 -->
+                     <div class="min-w-[22.24%] w-[22.24%] cursor-pointer group btn-press" onclick="abrirProduto('Mousepad')">
                         <div class="bg-white rounded-lg overflow-hidden relative border border-gray-100 shadow-sm">
-                            <img src="produtos/mousepad.jpg" class="w-full aspect-square object-cover" onerror="this.src='https://placehold.co/150x150/eee/999?text=Mousepad'">
-                            <span class="absolute bottom-0 left-0 bg-[#FE2C55] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-tr-lg">? 70%</span>
+                            <img src="produtos/mousepad.jpg" class="w-full aspect-square object-cover" onerror="this.src='https://placehold.co/230x230/eee/999?text=Mousepad'">
+                            <span class="absolute bottom-0 left-0 bg-[#FE2C55] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-tr-lg">â†“ 70%</span>
                         </div>
                         <div class="mt-1.5 px-0.5">
                             <p class="font-bold text-sm text-[#161823]">R$ 8,90</p>
@@ -238,10 +245,11 @@
                         </div>
                     </div>
 
-                    <div class="min-w-[110px] cursor-pointer group btn-press" onclick="abrirProduto('Carteira Slim')">
+                    <!-- Item 4 -->
+                    <div class="min-w-[22.24%] w-[22.24%] cursor-pointer group btn-press" onclick="abrirProduto('Carteira Slim')">
                         <div class="bg-white rounded-lg overflow-hidden relative border border-gray-100 shadow-sm">
-                            <img src="produtos/carteira_preta.jpg" class="w-full aspect-square object-cover" onerror="this.src='https://placehold.co/150x150/eee/999?text=Carteira'">
-                            <span class="absolute bottom-0 left-0 bg-[#FE2C55] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-tr-lg">? 55%</span>
+                            <img src="produtos/carteira_preta.jpg" class="w-full aspect-square object-cover" onerror="this.src='https://placehold.co/230x230/eee/999?text=Carteira'">
+                            <span class="absolute bottom-0 left-0 bg-[#FE2C55] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-tr-lg">â†“ 55%</span>
                         </div>
                         <div class="mt-1.5 px-0.5">
                             <p class="font-bold text-sm text-[#161823]">R$ 17,90</p>
@@ -251,8 +259,8 @@
                 </div>
             </div>
 
-            <!-- Filtros de Categoria -->
-            <div class="flex overflow-x-auto no-scrollbar gap-6 px-4 mb-4 border-b border-gray-200 text-[14px]">
+            <!-- Filtros de Categoria (Margem 2.13%) -->
+            <div class="flex overflow-x-auto no-scrollbar gap-6 px-[2.13%] mb-4 border-b border-gray-200 text-[14px]">
                 <button onclick="mudarFiltro(this)" class="nav-filter text-[#161823] font-bold border-b-2 border-black pb-2 whitespace-nowrap transition-all outline-none">Todos</button>
                 <button onclick="mudarFiltro(this)" class="nav-filter text-gray-500 hover:text-black pb-2 whitespace-nowrap transition-all outline-none">Eletr&ocirc;nicos</button>
                 <button onclick="mudarFiltro(this)" class="nav-filter text-gray-500 hover:text-black pb-2 whitespace-nowrap transition-all outline-none">Beleza</button>
@@ -260,12 +268,15 @@
                 <button onclick="mudarFiltro(this)" class="nav-filter text-gray-500 hover:text-black pb-2 whitespace-nowrap transition-all outline-none">Moda</button>
             </div>
 
-            <!-- Grid de Produtos (Feed) -->
-            <div class="grid grid-cols-2 gap-2 px-2 pb-10">
+            <!-- 2.5 Grid de produtos (2 colunas) -->
+            <!-- Margem 2.13% -->
+            <!-- Gap entre colunas 22px / 1034px = 2.13% (relativo Ã  largura Ãºtil) -->
+            <div class="grid grid-cols-2 gap-[2.13%] px-[2.13%] pb-10">
                 <!-- Produto 1: Escova (Live) -->
-                <div class="bg-white rounded-lg overflow-hidden cursor-pointer btn-press shadow-sm" onclick="abrirProduto('Escova Sônica')">
+                <div class="bg-white rounded-lg overflow-hidden cursor-pointer btn-press shadow-sm" onclick="abrirProduto('Escova SÃ´nica')">
                     <div class="relative">
-                        <img src="produtos/toothbrush_live.jpg" class="w-full h-52 object-cover" onerror="this.src='https://placehold.co/200x250/eee/999?text=Live+Escova'">
+                        <!-- 2.5.1 Imagem do produto 506x506 (Quadrada) -->
+                        <img src="produtos/toothbrush_live.jpg" class="w-full aspect-square object-cover" onerror="this.src='https://placehold.co/506x506/eee/999?text=Live+Escova'">
                         <div class="absolute top-2 left-2 flex gap-1 z-10">
                             <div class="bg-[#FE2C55] text-white text-[10px] font-bold px-1.5 py-0.5 rounded flex items-center shadow-sm">
                                 <div class="w-2 h-2 mr-1 relative flex items-center justify-center">
@@ -282,7 +293,7 @@
                             <div class="w-6 h-6 rounded-full border border-white overflow-hidden bg-gray-200">
                                 <img src="produtos/toothbrush_live.jpg" class="w-full h-full object-cover opacity-90">
                             </div>
-                            <span class="text-white text-[11px] font-semibold drop-shadow-md">Migo &Eacute;der ??</span>
+                            <span class="text-white text-[11px] font-semibold drop-shadow-md">Migo &Eacute;der ðŸŒ½</span>
                         </div>
                         <div class="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-black/50 to-transparent"></div>
                     </div>
@@ -298,7 +309,7 @@
 
                 <!-- Produto 2: Fone de Ouvido -->
                 <div class="bg-white rounded-lg overflow-hidden cursor-pointer btn-press shadow-sm" onclick="abrirProduto('Fone KZ')">
-                    <img src="produtos/fones_ouvido.jpg" class="w-full h-52 object-cover" onerror="this.src='https://placehold.co/200x250/eee/999?text=Fones'">
+                    <img src="produtos/fones_ouvido.jpg" class="w-full aspect-square object-cover" onerror="this.src='https://placehold.co/506x506/eee/999?text=Fones'">
                     <div class="p-2.5">
                         <p class="text-[13px] text-[#161823] line-clamp-2 leading-tight mb-1.5">Fone de ouvido com fio com microfone...</p>
                         <div class="flex items-baseline gap-1.5">
@@ -315,7 +326,7 @@
 
                 <!-- Produto 3: Carteira Aberta -->
                 <div class="bg-white rounded-lg overflow-hidden cursor-pointer btn-press shadow-sm" onclick="abrirProduto('Carteira Couro')">
-                    <img src="produtos/carteira_aberta.jpg" class="w-full h-52 object-cover" onerror="this.src='https://placehold.co/200x250/eee/999?text=Carteira+Aberta'">
+                    <img src="produtos/carteira_aberta.jpg" class="w-full aspect-square object-cover" onerror="this.src='https://placehold.co/506x506/eee/999?text=Carteira+Aberta'">
                     <div class="p-2.5">
                         <p class="text-[13px] text-[#161823] line-clamp-2 leading-tight mb-1.5">Carteira Masculina Slim Pequena Couro...</p>
                         <p class="text-[#FE2C55] font-bold text-sm">R$ 29,90</p>
@@ -333,7 +344,7 @@
                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-3 flex flex-col justify-end">
                         <button class="bg-[#FE2C55] hover:bg-[#d61e42] active:scale-95 text-white w-full py-2 rounded-full text-xs font-bold mb-8 shadow-lg transition-all">Compre agora</button>
                     </div>
-                    <!-- Ícone menu flutuante -->
+                    <!-- Ãcone menu flutuante -->
                     <div class="absolute bottom-3 right-3 bg-white w-8 h-8 rounded-full flex items-center justify-center shadow-lg hover:bg-gray-100 transition active:scale-90">
                         <i class="fas fa-bars text-black text-sm"></i>
                     </div>
@@ -342,12 +353,12 @@
         </div>
         
         <!-- Toast Notification Element -->
-        <div id="toast">Notificação</div>
+        <div id="toast">NotificaÃ§Ã£o</div>
 
     </div>
 
     <script>
-        // Função para mostrar notificações (Toasts)
+        // FunÃ§Ã£o para mostrar notificaÃ§Ãµes (Toasts)
         let toastTimeout;
         function showToast(message) {
             const toast = document.getElementById("toast");
@@ -360,7 +371,7 @@
             }, 2000);
         }
 
-        // Simulação de busca
+        // SimulaÃ§Ã£o de busca
         function realizarBusca() {
             const termo = document.getElementById('searchInput').value;
             // Efeito visual de foco
@@ -368,20 +379,20 @@
             showToast(`Buscando por: ${termo}`);
         }
 
-        // Interação com Produtos
+        // InteraÃ§Ã£o com Produtos
         function abrirProduto(nome) {
             showToast(`Abrindo: ${nome}`);
         }
 
-        // Interação com Cupons
+        // InteraÃ§Ã£o com Cupons
         function coletarCupom(elemento) {
-            // Se já foi coletado, avisa
+            // Se jÃ¡ foi coletado, avisa
             if(elemento.classList.contains('opacity-50')) {
-                showToast('Cupom já coletado!');
+                showToast('Cupom jÃ¡ coletado!');
                 return;
             }
 
-            // Animação visual de clique
+            // AnimaÃ§Ã£o visual de clique
             elemento.style.transform = 'scale(0.95)';
             setTimeout(() => {
                 elemento.style.transform = 'scale(1)';
