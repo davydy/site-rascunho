@@ -31,16 +31,21 @@
             scrollbar-width: none;
         }
 
-        /* TICKET OTIMIZADO (Medidas Exatas: 312x147px) */
+        /* Classe Específica para o Ícone da Seta no Badge */
+        .badge-arrow-icon {
+            width: 12px;
+            height: 12px;
+            flex-shrink: 0; /* Garante que o ícone não amasse */
+        }
+
+        /* TICKET OTIMIZADO */
         .coupon-ticket {
-            background-color: #FFFFFF; /* Ajustado para Branco */
+            background-color: #F0FCFC;
             position: relative;
             border-radius: 4px;
-            /* Proporção 312/147 */
             aspect-ratio: 312 / 147;
-            
-            /* Furo de 15px diâmetro = 7.5px raio */
-            --hole-radius: 7.5px; 
+            /* FURO REDUZIDO para ~7px de diâmetro (3.5px raio) */
+            --hole-radius: 3.5px; 
             
             -webkit-mask-image: 
                 radial-gradient(circle at left center, transparent var(--hole-radius), black calc(var(--hole-radius) + 0.5px)),
@@ -66,8 +71,6 @@
         }
 
         /* Animação Vertical Atualizada */
-        /* Ciclo por item: 3s estático + 1s transição = 4s total por item */
-        /* Loop total para 2 itens + reset: 8s */
         @keyframes vertical-scroll {
             0%, 37.5% { transform: translateY(0); }           /* Item 1 (0s a 3s) */
             50%, 87.5% { transform: translateY(-33.333%); }   /* Item 2 (4s a 7s) */
@@ -187,7 +190,6 @@
                     <div class="absolute bottom-[6.9%] left-0 right-0 px-[2.8%] flex justify-between items-end z-10">
                         <!-- Cupom 1 -->
                         <div class="coupon-ticket w-[31.96%] cursor-pointer btn-press" onclick="coletarCupom(this)">
-                            <!-- Cor do texto atualizada para #007a77, fonte reduzida e sem negrito na descrição -->
                             <p class="text-[#007a77] font-extrabold text-[12px] leading-tight">Frete gr&aacute;tis</p>
                             <p class="text-[#007a77] text-[9px] font-medium whitespace-nowrap mt-0.5">Desconto de R$ 20,00</p>
                         </div>
@@ -209,7 +211,7 @@
 
             <!-- Ofertas de Hoje -->
             <div class="mx-[2.13%] mb-6 bg-white rounded-xl p-3 shadow-sm relative flex flex-col justify-center">
-                <!-- Cabeçalho com Animação -->
+                <!-- Cabeçalho Animado -->
                 <div class="flex items-center mb-3 overflow-hidden h-[22px]">
                     <h3 class="font-bold text-lg text-black tracking-tight shrink-0">Ofertas de Hoje</h3>
                     
@@ -236,17 +238,21 @@
                     <div class="min-w-[22.24%] w-[22.24%] cursor-pointer group btn-press" onclick="abrirProduto('Monitor Gamer')">
                         <div class="bg-white rounded-lg overflow-hidden relative border border-gray-100 shadow-sm">
                             <img src="produtos/monitor_gamer.jpg" class="w-full aspect-square object-cover" onerror="this.src='https://placehold.co/230x230/eee/999?text=Monitor'">
-                            <!-- SELO AJUSTADO: Seta Sólida (Sem barra T) dentro da Abinha -->
-                            <div class="absolute bottom-0 left-0 bg-[#FD4066] text-white px-1.5 py-0.5 rounded-tr-lg inline-flex items-center gap-0.5 z-10">
-                                <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M12 21L5 12H9V4H15V12H19L12 21Z" stroke="none"/>
+                            <!-- Seta Personalizada "Bold" (Classe CSS Aplicada e Gap Ajustado) -->
+                            <div class="absolute bottom-0 left-0 bg-[#FD4066] text-white px-1.5 py-0.5 rounded-tr-lg inline-flex items-center gap-1 z-10">
+                                <svg class="badge-arrow-icon" viewBox="0 0 100 100" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- Quadrado/Barra no Topo -->
+                                    <rect x="39" y="12" width="22" height="9" fill="currentColor"/>
+                                    <!-- Haste e Triângulo -->
+                                    <rect x="38" y="30" width="24" height="20" fill="currentColor"/>
+                                    <polygon points="19,50 81,50 50,92" fill="currentColor"/>
                                 </svg>
                                 <span class="text-[10px] font-medium leading-none">56%</span>
                             </div>
                         </div>
                         <div class="mt-1.5 px-0.5">
                             <p class="font-medium text-sm text-[#161823]">R$ 229,96</p>
-                            <p class="text-[10px] text-gray-400 line-through font-medium">R$ 530,99</p>
+                            <p class="text-[10px] text-gray-400 line-through font-normal">R$ 530,99</p>
                         </div>
                     </div>
 
@@ -254,16 +260,18 @@
                     <div class="min-w-[22.24%] w-[22.24%] cursor-pointer group btn-press" onclick="abrirProduto('Câmera Digital')">
                         <div class="bg-white rounded-lg overflow-hidden relative border border-gray-100 shadow-sm">
                             <img src="produtos/camera_branca.jpg" class="w-full aspect-square object-cover" onerror="this.src='https://placehold.co/230x230/eee/999?text=Camera'">
-                            <div class="absolute bottom-0 left-0 bg-[#FD4066] text-white px-1.5 py-0.5 rounded-tr-lg inline-flex items-center gap-0.5 z-10">
-                                <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M12 21L5 12H9V4H15V12H19L12 21Z" stroke="none"/>
+                            <div class="absolute bottom-0 left-0 bg-[#FD4066] text-white px-1.5 py-0.5 rounded-tr-lg inline-flex items-center gap-1 z-10">
+                                <svg class="badge-arrow-icon" viewBox="0 0 100 100" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="39" y="12" width="22" height="9" fill="currentColor"/>
+                                    <rect x="38" y="30" width="24" height="20" fill="currentColor"/>
+                                    <polygon points="19,50 81,50 50,92" fill="currentColor"/>
                                 </svg>
                                 <span class="text-[10px] font-medium leading-none">66%</span>
                             </div>
                         </div>
                         <div class="mt-1.5 px-0.5">
                             <p class="font-medium text-sm text-[#161823]">R$ 224,19</p>
-                            <p class="text-[10px] text-gray-400 line-through font-medium">R$ 658,00</p>
+                            <p class="text-[10px] text-gray-400 line-through font-normal">R$ 658,00</p>
                         </div>
                     </div>
 
@@ -271,16 +279,18 @@
                      <div class="min-w-[22.24%] w-[22.24%] cursor-pointer group btn-press" onclick="abrirProduto('Mousepad')">
                         <div class="bg-white rounded-lg overflow-hidden relative border border-gray-100 shadow-sm">
                             <img src="produtos/mousepad.jpg" class="w-full aspect-square object-cover" onerror="this.src='https://placehold.co/230x230/eee/999?text=Mousepad'">
-                            <div class="absolute bottom-0 left-0 bg-[#FD4066] text-white px-1.5 py-0.5 rounded-tr-lg inline-flex items-center gap-0.5 z-10">
-                                <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M12 21L5 12H9V4H15V12H19L12 21Z" stroke="none"/>
+                            <div class="absolute bottom-0 left-0 bg-[#FD4066] text-white px-1.5 py-0.5 rounded-tr-lg inline-flex items-center gap-1 z-10">
+                                <svg class="badge-arrow-icon" viewBox="0 0 100 100" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="39" y="12" width="22" height="9" fill="currentColor"/>
+                                    <rect x="38" y="30" width="24" height="20" fill="currentColor"/>
+                                    <polygon points="19,50 81,50 50,92" fill="currentColor"/>
                                 </svg>
                                 <span class="text-[10px] font-medium leading-none">70%</span>
                             </div>
                         </div>
                         <div class="mt-1.5 px-0.5">
                             <p class="font-medium text-sm text-[#161823]">R$ 8,90</p>
-                            <p class="text-[10px] text-gray-400 line-through font-medium">R$ 29,90</p>
+                            <p class="text-[10px] text-gray-400 line-through font-normal">R$ 29,90</p>
                         </div>
                     </div>
 
@@ -288,16 +298,18 @@
                     <div class="min-w-[22.24%] w-[22.24%] cursor-pointer group btn-press" onclick="abrirProduto('Carteira Slim')">
                         <div class="bg-white rounded-lg overflow-hidden relative border border-gray-100 shadow-sm">
                             <img src="produtos/carteira_preta.jpg" class="w-full aspect-square object-cover" onerror="this.src='https://placehold.co/230x230/eee/999?text=Carteira'">
-                            <div class="absolute bottom-0 left-0 bg-[#FD4066] text-white px-1.5 py-0.5 rounded-tr-lg inline-flex items-center gap-0.5 z-10">
-                                <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M12 21L5 12H9V4H15V12H19L12 21Z" stroke="none"/>
+                            <div class="absolute bottom-0 left-0 bg-[#FD4066] text-white px-1.5 py-0.5 rounded-tr-lg inline-flex items-center gap-1 z-10">
+                                <svg class="badge-arrow-icon" viewBox="0 0 100 100" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="39" y="12" width="22" height="9" fill="currentColor"/>
+                                    <rect x="38" y="30" width="24" height="20" fill="currentColor"/>
+                                    <polygon points="19,50 81,50 50,92" fill="currentColor"/>
                                 </svg>
                                 <span class="text-[10px] font-medium leading-none">55%</span>
                             </div>
                         </div>
                         <div class="mt-1.5 px-0.5">
                             <p class="font-medium text-sm text-[#161823]">R$ 17,90</p>
-                            <p class="text-[10px] text-gray-400 line-through font-medium">R$ 39,90</p>
+                            <p class="text-[10px] text-gray-400 line-through font-normal">R$ 39,90</p>
                         </div>
                     </div>
                 </div>
@@ -305,11 +317,11 @@
 
             <!-- Filtros e Grid (Mantidos) -->
             <div class="flex overflow-x-auto no-scrollbar gap-6 px-[2.13%] mb-4 border-b border-gray-200 text-[14px]">
-                <button onclick="mudarFiltro(this)" class="nav-filter text-[#161823] font-bold border-b-2 border-black pb-2 whitespace-nowrap transition-all outline-none">Todos</button>
-                <button onclick="mudarFiltro(this)" class="nav-filter text-gray-500 hover:text-black pb-2 whitespace-nowrap transition-all outline-none">Eletr&ocirc;nicos</button>
-                <button onclick="mudarFiltro(this)" class="nav-filter text-gray-500 hover:text-black pb-2 whitespace-nowrap transition-all outline-none">Beleza</button>
-                <button onclick="mudarFiltro(this)" class="nav-filter text-gray-500 hover:text-black pb-2 whitespace-nowrap transition-all outline-none">Casa e Mais</button>
-                <button onclick="mudarFiltro(this)" class="nav-filter text-gray-500 hover:text-black pb-2 whitespace-nowrap transition-all outline-none">Moda</button>
+                <button onclick="mudarFiltro(this)" class="nav-filter text-[#161823] font-bold border-b-2 border-black pb-2 whitespace-nowrap outline-none">Todos</button>
+                <button onclick="mudarFiltro(this)" class="nav-filter text-gray-500 hover:text-black font-bold pb-2 whitespace-nowrap outline-none">Eletr&ocirc;nicos</button>
+                <button onclick="mudarFiltro(this)" class="nav-filter text-gray-500 hover:text-black font-bold pb-2 whitespace-nowrap outline-none">Beleza</button>
+                <button onclick="mudarFiltro(this)" class="nav-filter text-gray-500 hover:text-black font-bold pb-2 whitespace-nowrap outline-none">Casa e Mais</button>
+                <button onclick="mudarFiltro(this)" class="nav-filter text-gray-500 hover:text-black font-bold pb-2 whitespace-nowrap outline-none">Moda</button>
             </div>
 
             <div class="grid grid-cols-2 gap-[2.13%] px-[2.13%] pb-10">
