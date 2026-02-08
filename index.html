@@ -10,8 +10,9 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
         
         :root {
-            --tiktok-bg: #f1f1f2;
-            --tiktok-red: #FE2C55;
+            /* Cores Atualizadas */
+            --tiktok-bg: #F5F5F5;
+            --tiktok-red: #FD4066;
             --tiktok-cyan: #25F4EE;
             --tiktok-black: #161823;
         }
@@ -32,15 +33,14 @@
 
         /* TICKET OTIMIZADO (Medidas Exatas: 312x147px) */
         .coupon-ticket {
-            background-color: #F8FEFF;
+            background-color: #FFFFFF; /* Ajustado para Branco */
             position: relative;
             border-radius: 4px;
-            /* Largura será definida no HTML (approx 31.96%) */
             /* Proporção 312/147 */
             aspect-ratio: 312 / 147;
             
-            /* Furo de 10px diâmetro = 5px raio */
-            --hole-radius: 5px; 
+            /* Furo de 15px diâmetro = 7.5px raio */
+            --hole-radius: 7.5px; 
             
             -webkit-mask-image: 
                 radial-gradient(circle at left center, transparent var(--hole-radius), black calc(var(--hole-radius) + 0.5px)),
@@ -65,16 +65,17 @@
             transition: transform 0.1s;
         }
 
-        /* Animação Vertical dos Badges de Oferta */
-        /* Ciclo total: 10s (4s espera + 1s move + 4s espera + 1s move) */
+        /* Animação Vertical Atualizada */
+        /* Ciclo por item: 3s estático + 1s transição = 4s total por item */
+        /* Loop total para 2 itens + reset: 8s */
         @keyframes vertical-scroll {
-            0%, 40% { transform: translateY(0); }           /* Item 1 fixo por 4s */
-            50%, 90% { transform: translateY(-33.333%); }   /* Slide para Item 2 e fixa por 4s */
-            100% { transform: translateY(-66.666%); }       /* Slide para Clone Item 1 */
+            0%, 37.5% { transform: translateY(0); }           /* Item 1 (0s a 3s) */
+            50%, 87.5% { transform: translateY(-33.333%); }   /* Item 2 (4s a 7s) */
+            100% { transform: translateY(-66.666%); }         /* Reset (8s) */
         }
 
         .animate-vertical-badges {
-            animation: vertical-scroll 10s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+            animation: vertical-scroll 8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
         }
 
         #toast {
@@ -104,18 +105,20 @@
 <body class="flex justify-center min-h-screen bg-gray-200">
 
     <!-- Container Principal -->
-    <div class="w-full max-w-md bg-[#f1f1f2] shadow-2xl relative min-h-screen flex flex-col">
+    <div class="w-full max-w-md bg-[#F5F5F5] shadow-2xl relative min-h-screen flex flex-col">
         
         <!-- Header Fixo -->
         <div class="sticky top-0 z-50 bg-white pt-2 pb-2 border-b border-gray-100 shadow-sm">
-            <div class="flex items-center justify-between px-[2.13%] mb-2">
-                <div class="btn-press cursor-pointer p-1" onclick="showToast('Abrindo Live...')">
+            <div class="relative flex items-center justify-between px-[2.13%] mb-2 h-8">
+                <!-- Live Icon -->
+                <div class="btn-press cursor-pointer p-1 z-10" onclick="showToast('Abrindo Live...')">
                     <i class="fas fa-tv text-lg text-[#161823]"></i>
                 </div>
                 
-                <div class="relative btn-press cursor-pointer p-1" onclick="showToast('Carrinho: 2 itens')">
+                <!-- Carrinho -->
+                <div class="relative btn-press cursor-pointer p-1 z-10" onclick="showToast('Carrinho: 2 itens')">
                     <i class="fas fa-shopping-cart text-xl text-[#161823]"></i>
-                    <span class="absolute -top-1 -right-1 bg-[#FE2C55] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full border-2 border-white leading-none">2</span>
+                    <span class="absolute -top-1 -right-1 bg-[#FD4066] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full border-2 border-white leading-none">2</span>
                 </div>
             </div>
 
@@ -127,11 +130,11 @@
                     </div>
                     <input type="text" 
                            id="searchInput"
-                           class="block w-full pl-10 pr-20 py-2.5 border-2 border-black rounded-lg text-sm bg-white placeholder-gray-500 text-black font-medium focus:outline-none focus:border-[#FE2C55] transition-colors" 
+                           class="block w-full pl-10 pr-20 py-2.5 border-2 border-black rounded-lg text-sm bg-white placeholder-gray-500 text-black font-medium focus:outline-none focus:border-[#FD4066] transition-colors" 
                            placeholder="galaxy s23 fe case" 
                            value="galaxy s23 fe case">
                     <div class="absolute inset-y-0 right-0 flex items-center pr-1">
-                        <button onclick="realizarBusca()" class="bg-black text-white px-4 py-1.5 rounded-md text-sm font-bold hover:bg-[#FE2C55] transition-colors btn-press">
+                        <button onclick="realizarBusca()" class="bg-black text-white px-4 py-1.5 rounded-md text-sm font-bold hover:bg-[#FD4066] transition-colors btn-press">
                             Procurar
                         </button>
                     </div>
@@ -146,7 +149,7 @@
             <div class="px-[2.13%] mt-3 mb-4">
                 <div class="w-full aspect-[1034/274] rounded-xl overflow-hidden shadow-sm relative bg-[#FFF8E1] cursor-pointer btn-press group" onclick="showToast('Redirecionando para Super Brand Day...')">
                     
-                    <!-- Imagem ESTÁTICA (sem hover:scale) -->
+                    <!-- Imagem ESTÁTICA -->
                     <img src="produtos/banner_top.jpg" 
                          class="absolute inset-0 w-full h-full object-cover z-0"
                          alt="Banner Promo&ccedil;&atilde;o">
@@ -166,15 +169,13 @@
 
             <!-- Seção de Cupons -->
             <div class="px-[2.13%] mb-6">
-                <!-- Aspect Ratio 1034/290 (Baseado na largura útil 1034px) -->
-                <div class="relative w-full aspect-[1034/290] rounded-xl overflow-hidden shadow-sm bg-[#FF2B55]">
+                <div class="relative w-full aspect-[1034/290] rounded-xl overflow-hidden shadow-sm bg-[#FD4066]">
                     
                     <img src="produtos/banner_cupom.jpg" 
                          class="absolute inset-0 w-full h-full object-cover z-0"
                          onerror="this.style.display='none';"> 
                     
-                    <!-- Header: Topo 110px de 290px = 37.93% -->
-                    <!-- Padding lateral 2.8% (29px) -->
+                    <!-- Header -->
                     <div class="relative z-10 flex justify-between items-center px-[2.8%] h-[37.93%] pt-2"> 
                         <h3 class="font-bold text-[18px] text-white tracking-tight leading-none drop-shadow-md">Cupons novos clientes</h3>
                         <button onclick="showToast('Cupons aplicados!')" class="bg-transparent hover:bg-white/10 active:bg-white/20 text-white text-[12px] font-semibold px-5 py-1 rounded-full border border-white transition btn-press">
@@ -186,21 +187,21 @@
                     <div class="absolute bottom-[6.9%] left-0 right-0 px-[2.8%] flex justify-between items-end z-10">
                         <!-- Cupom 1 -->
                         <div class="coupon-ticket w-[31.96%] cursor-pointer btn-press" onclick="coletarCupom(this)">
-                            <!-- Cor do texto atualizada para #007a77 e fonte maior -->
-                            <p class="text-[#007a77] font-extrabold text-[13px] leading-tight">Frete gr&aacute;tis</p>
-                            <p class="text-[#007a77] text-[10px] font-bold whitespace-nowrap mt-0.5">Desconto de R$ 20,00</p>
+                            <!-- Cor do texto atualizada para #007a77, fonte reduzida e sem negrito na descrição -->
+                            <p class="text-[#007a77] font-extrabold text-[12px] leading-tight">Frete gr&aacute;tis</p>
+                            <p class="text-[#007a77] text-[9px] font-medium whitespace-nowrap mt-0.5">Desconto de R$ 20,00</p>
                         </div>
                         
                         <!-- Cupom 2 -->
                         <div class="coupon-ticket w-[31.96%] cursor-pointer btn-press" onclick="coletarCupom(this)">
-                            <p class="text-[#007a77] font-extrabold text-[13px] leading-tight">Frete gr&aacute;tis</p>
-                            <p class="text-[#007a77] text-[10px] font-bold whitespace-nowrap mt-0.5">Desconto de R$ 20,00</p>
+                            <p class="text-[#007a77] font-extrabold text-[12px] leading-tight">Frete gr&aacute;tis</p>
+                            <p class="text-[#007a77] text-[9px] font-medium whitespace-nowrap mt-0.5">Desconto de R$ 20,00</p>
                         </div>
                         
                         <!-- Cupom 3 -->
                         <div class="coupon-ticket w-[31.96%] cursor-pointer btn-press" onclick="coletarCupom(this)">
-                            <p class="text-[#007a77] font-extrabold text-[13px] leading-tight">Frete gr&aacute;tis</p>
-                            <p class="text-[#007a77] text-[10px] font-bold whitespace-nowrap mt-0.5">Desconto de R$ 5,00</p>
+                            <p class="text-[#007a77] font-extrabold text-[12px] leading-tight">Frete gr&aacute;tis</p>
+                            <p class="text-[#007a77] text-[9px] font-medium whitespace-nowrap mt-0.5">Desconto de R$ 5,00</p>
                         </div>
                     </div>
                 </div>
@@ -338,7 +339,7 @@
                     </div>
                     <div class="p-2.5">
                         <p class="text-[13px] text-[#161823] line-clamp-2 leading-tight mb-1.5">Escova Dental El&eacute;trica S&ocirc;nica, Limpeza Profunda...</p>
-                        <p class="text-[#FE2C55] font-bold text-sm">R$ 9,30</p>
+                        <p class="text-[#FD4066] font-bold text-sm">R$ 9,30</p>
                         <div class="flex items-center gap-1 mt-2 bg-gray-50 p-1 rounded border border-gray-100">
                              <img src="produtos/toothbrush_live.jpg" class="w-5 h-5 rounded border border-gray-200 object-cover">
                              <span class="text-[10px] text-gray-500 line-clamp-1">Escova Dental S&ocirc;nica...</span>
@@ -352,7 +353,7 @@
                     <div class="p-2.5">
                         <p class="text-[13px] text-[#161823] line-clamp-2 leading-tight mb-1.5">Fone de ouvido com fio com microfone...</p>
                         <div class="flex items-baseline gap-1.5">
-                            <p class="text-[#FE2C55] font-bold text-sm">R$ 21,31</p>
+                            <p class="text-[#FD4066] font-bold text-sm">R$ 21,31</p>
                             <p class="text-[10px] text-gray-400 line-through">R$ 90,00</p>
                         </div>
                         <p class="text-[#20D5EC] text-[10px] font-bold mt-0.5">Frete gr&aacute;tis</p>
@@ -368,7 +369,7 @@
                     <img src="produtos/carteira_aberta.jpg" class="w-full aspect-square object-cover" onerror="this.src='https://placehold.co/506x506/eee/999?text=Carteira+Aberta'">
                     <div class="p-2.5">
                         <p class="text-[13px] text-[#161823] line-clamp-2 leading-tight mb-1.5">Carteira Masculina Slim Pequena Couro...</p>
-                        <p class="text-[#FE2C55] font-bold text-sm">R$ 29,90</p>
+                        <p class="text-[#FD4066] font-bold text-sm">R$ 29,90</p>
                         <p class="text-[#20D5EC] text-[10px] font-bold mt-0.5">Frete gr&aacute;tis</p>
                         <div class="flex items-center gap-1 mt-1.5">
                              <i class="fas fa-star text-yellow-400 text-[10px]"></i>
@@ -381,7 +382,7 @@
                 <div class="rounded-lg overflow-hidden relative h-full min-h-[250px] cursor-pointer group shadow-sm" onclick="abrirProduto('Marcas Destaque')">
                     <img src="produtos/marcas_destaque.jpg" class="absolute inset-0 w-full h-full object-cover transition-transform group-hover:scale-105 duration-700" onerror="this.style.backgroundColor='#6B4423'">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-3 flex flex-col justify-end">
-                        <button class="bg-[#FE2C55] hover:bg-[#d61e42] active:scale-95 text-white w-full py-2 rounded-full text-xs font-bold mb-8 shadow-lg transition-all">Compre agora</button>
+                        <button class="bg-[#FD4066] hover:bg-[#d61e42] active:scale-95 text-white w-full py-2 rounded-full text-xs font-bold mb-8 shadow-lg transition-all">Compre agora</button>
                     </div>
                     <div class="absolute bottom-3 right-3 bg-white w-8 h-8 rounded-full flex items-center justify-center shadow-lg hover:bg-gray-100 transition active:scale-90">
                         <i class="fas fa-bars text-black text-sm"></i>
