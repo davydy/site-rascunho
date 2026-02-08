@@ -183,22 +183,24 @@
                     </div>
 
                     <!-- Lista de Tickets -->
-                    <!-- Bottom 20px de 290px = 6.9% -->
-                    <!-- Largura Ticket: 312px em 976px de espaço útil = 31.96% -->
                     <div class="absolute bottom-[6.9%] left-0 right-0 px-[2.8%] flex justify-between items-end z-10">
+                        <!-- Cupom 1 -->
                         <div class="coupon-ticket w-[31.96%] cursor-pointer btn-press" onclick="coletarCupom(this)">
-                            <p class="text-[#004D40] font-extrabold text-[11px] leading-tight">Frete gr&aacute;tis</p>
-                            <p class="text-[#00695C] text-[8px] font-bold whitespace-nowrap mt-0.5">Desconto de R$ 20,00</p>
+                            <!-- Cor do texto atualizada para #007a77 e fonte maior -->
+                            <p class="text-[#007a77] font-extrabold text-[13px] leading-tight">Frete gr&aacute;tis</p>
+                            <p class="text-[#007a77] text-[10px] font-bold whitespace-nowrap mt-0.5">Desconto de R$ 20,00</p>
                         </div>
                         
+                        <!-- Cupom 2 -->
                         <div class="coupon-ticket w-[31.96%] cursor-pointer btn-press" onclick="coletarCupom(this)">
-                            <p class="text-[#004D40] font-extrabold text-[11px] leading-tight">Frete gr&aacute;tis</p>
-                            <p class="text-[#00695C] text-[8px] font-bold whitespace-nowrap mt-0.5">Desconto de R$ 20,00</p>
+                            <p class="text-[#007a77] font-extrabold text-[13px] leading-tight">Frete gr&aacute;tis</p>
+                            <p class="text-[#007a77] text-[10px] font-bold whitespace-nowrap mt-0.5">Desconto de R$ 20,00</p>
                         </div>
                         
+                        <!-- Cupom 3 -->
                         <div class="coupon-ticket w-[31.96%] cursor-pointer btn-press" onclick="coletarCupom(this)">
-                            <p class="text-[#004D40] font-extrabold text-[11px] leading-tight">Frete gr&aacute;tis</p>
-                            <p class="text-[#00695C] text-[8px] font-bold whitespace-nowrap mt-0.5">Desconto de R$ 5,00</p>
+                            <p class="text-[#007a77] font-extrabold text-[13px] leading-tight">Frete gr&aacute;tis</p>
+                            <p class="text-[#007a77] text-[10px] font-bold whitespace-nowrap mt-0.5">Desconto de R$ 5,00</p>
                         </div>
                     </div>
                 </div>
@@ -210,18 +212,17 @@
                 <div class="flex items-center mb-3 overflow-hidden h-[22px]">
                     <h3 class="font-bold text-lg text-black tracking-tight shrink-0">Ofertas de Hoje</h3>
                     
-                    <!-- Espaçamento de 10px entre texto e badge -->
                     <div class="ml-[10px] h-full overflow-hidden relative flex-1 flex items-center"> 
                         <div class="w-full animate-vertical-badges flex flex-col absolute top-0 left-0">
-                            <!-- Badge 1: Frete grátis (#22b5b6) -->
+                            <!-- Badge 1: Frete -->
                             <div class="h-[22px] flex items-center">
                                 <span class="bg-[#22b5b6] text-white text-[10px] px-1.5 py-0.5 rounded font-bold shadow-sm whitespace-nowrap">Frete gr&aacute;tis</span>
                             </div>
-                            <!-- Badge 2: Oferta relâmpago (#fc2650) -->
+                            <!-- Badge 2: Oferta relâmpago -->
                             <div class="h-[22px] flex items-center">
-                                <span class="bg-[#fc2650] text-white text-[10px] px-1.5 py-0.5 rounded font-bold shadow-sm whitespace-nowrap">Oferta rel&acirc;mpago</span>
+                                <span class="bg-[#fc2650] text-white text-[10px] px-1.5 py-0.5 rounded font-bold shadow-sm whitespace-nowrap">At&eacute; 30% OFF</span>
                             </div>
-                            <!-- Clone Badge 1 (para loop) -->
+                            <!-- Clone Badge 1 -->
                             <div class="h-[22px] flex items-center">
                                 <span class="bg-[#22b5b6] text-white text-[10px] px-1.5 py-0.5 rounded font-bold shadow-sm whitespace-nowrap">Frete gr&aacute;tis</span>
                             </div>
@@ -234,10 +235,15 @@
                     <div class="min-w-[22.24%] w-[22.24%] cursor-pointer group btn-press" onclick="abrirProduto('Monitor Gamer')">
                         <div class="bg-white rounded-lg overflow-hidden relative border border-gray-100 shadow-sm">
                             <img src="produtos/monitor_gamer.jpg" class="w-full aspect-square object-cover" onerror="this.src='https://placehold.co/230x230/eee/999?text=Monitor'">
-                            <span class="absolute bottom-0 left-0 bg-[#FE2C55] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-tr-lg">↓ 56%</span>
+                            <!-- SELO AJUSTADO: Seta Sólida (Sem barra T) dentro da Abinha -->
+                            <div class="absolute bottom-0 left-0 bg-[#FD4066] text-white px-1.5 py-0.5 rounded-tr-lg inline-flex items-center gap-0.5 z-10">
+                                <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 21L5 12H9V4H15V12H19L12 21Z" stroke="none"/>
+                                </svg>
+                                <span class="text-[10px] font-medium leading-none">56%</span>
+                            </div>
                         </div>
                         <div class="mt-1.5 px-0.5">
-                            <!-- Preço font-medium -->
                             <p class="font-medium text-sm text-[#161823]">R$ 229,96</p>
                             <p class="text-[10px] text-gray-400 line-through font-medium">R$ 530,99</p>
                         </div>
@@ -247,7 +253,12 @@
                     <div class="min-w-[22.24%] w-[22.24%] cursor-pointer group btn-press" onclick="abrirProduto('Câmera Digital')">
                         <div class="bg-white rounded-lg overflow-hidden relative border border-gray-100 shadow-sm">
                             <img src="produtos/camera_branca.jpg" class="w-full aspect-square object-cover" onerror="this.src='https://placehold.co/230x230/eee/999?text=Camera'">
-                            <span class="absolute bottom-0 left-0 bg-[#FE2C55] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-tr-lg">↓ 66%</span>
+                            <div class="absolute bottom-0 left-0 bg-[#FD4066] text-white px-1.5 py-0.5 rounded-tr-lg inline-flex items-center gap-0.5 z-10">
+                                <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 21L5 12H9V4H15V12H19L12 21Z" stroke="none"/>
+                                </svg>
+                                <span class="text-[10px] font-medium leading-none">66%</span>
+                            </div>
                         </div>
                         <div class="mt-1.5 px-0.5">
                             <p class="font-medium text-sm text-[#161823]">R$ 224,19</p>
@@ -255,11 +266,16 @@
                         </div>
                     </div>
 
-                    <!-- Item 3 -->
+                     <!-- Item 3 -->
                      <div class="min-w-[22.24%] w-[22.24%] cursor-pointer group btn-press" onclick="abrirProduto('Mousepad')">
                         <div class="bg-white rounded-lg overflow-hidden relative border border-gray-100 shadow-sm">
                             <img src="produtos/mousepad.jpg" class="w-full aspect-square object-cover" onerror="this.src='https://placehold.co/230x230/eee/999?text=Mousepad'">
-                            <span class="absolute bottom-0 left-0 bg-[#FE2C55] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-tr-lg">↓ 70%</span>
+                            <div class="absolute bottom-0 left-0 bg-[#FD4066] text-white px-1.5 py-0.5 rounded-tr-lg inline-flex items-center gap-0.5 z-10">
+                                <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 21L5 12H9V4H15V12H19L12 21Z" stroke="none"/>
+                                </svg>
+                                <span class="text-[10px] font-medium leading-none">70%</span>
+                            </div>
                         </div>
                         <div class="mt-1.5 px-0.5">
                             <p class="font-medium text-sm text-[#161823]">R$ 8,90</p>
@@ -271,7 +287,12 @@
                     <div class="min-w-[22.24%] w-[22.24%] cursor-pointer group btn-press" onclick="abrirProduto('Carteira Slim')">
                         <div class="bg-white rounded-lg overflow-hidden relative border border-gray-100 shadow-sm">
                             <img src="produtos/carteira_preta.jpg" class="w-full aspect-square object-cover" onerror="this.src='https://placehold.co/230x230/eee/999?text=Carteira'">
-                            <span class="absolute bottom-0 left-0 bg-[#FE2C55] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-tr-lg">↓ 55%</span>
+                            <div class="absolute bottom-0 left-0 bg-[#FD4066] text-white px-1.5 py-0.5 rounded-tr-lg inline-flex items-center gap-0.5 z-10">
+                                <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 21L5 12H9V4H15V12H19L12 21Z" stroke="none"/>
+                                </svg>
+                                <span class="text-[10px] font-medium leading-none">55%</span>
+                            </div>
                         </div>
                         <div class="mt-1.5 px-0.5">
                             <p class="font-medium text-sm text-[#161823]">R$ 17,90</p>
